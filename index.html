@@ -7,71 +7,90 @@
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Eigenes CSS -->
-  <link href="styles.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  <!-- Google Fonts (für kindliche Schriftarten) -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1 class="text-center">Die drei ??? - Steckbriefe</h1>
+      <h1 class="text-center mb-4">Die drei ??? - Steckbriefe</h1>
     </header>
-    <nav class="mb-4">
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="#justus">Justus Jonas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#peter">Peter Shaw</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#bob">Bob Andrews</a>
-        </li>
-      </ul>
-    </nav>
-    <section id="justus" class="mb-4">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="justus.png" width="200px" alt="Justus Jonas" class="img-fluid">
-        </div>
-        <div class="col-md-8">
-          <h2>Justus Jonas</h2>
-          <p><strong>Alter:</strong> 13 Jahre</p>
-          <p><strong>Hobby:</strong> Detektivarbeit</p>
-          <p>Justus ist der kluge Kopf der drei ??? und liebt es, Rätsel zu lösen.</p>
-        </div>
-      </div>
-    </section>
-    <!-- Weitere Abschnitte für Peter und Bob -->
-    <!-- Beispiel -->
-    <section id="peter" class="mb-4">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="peter.png" width="200px" alt="Peter Shaw" class="img-fluid">
-        </div>
-        <div class="col-md-8">
-          <h2>Peter Shaw</h2>
-          <p><strong>Alter:</strong> 12 Jahre</p>
-          <p><strong>Hobby:</strong> Computerspiele</p>
-          <p>Peter ist der sportliche Typ und Experte für Technik.</p>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="justus-tab" data-toggle="tab" href="#justus" role="tab" aria-controls="justus" aria-selected="true">Justus Jonas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="peter-tab" data-toggle="tab" href="#peter" role="tab" aria-controls="peter" aria-selected="false">Peter Shaw</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="bob-tab" data-toggle="tab" href="#bob" role="tab" aria-controls="bob" aria-selected="false">Bob Andrews</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="justus" role="tabpanel" aria-labelledby="justus-tab">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <img src="justus.png" width="200px" alt="Justus Jonas" class="img-fluid">
+          </div>
+          <div class="col-md-8">
+            <h2 class="mt-3">Justus Jonas</h2>
+            <p><strong>Alter:</strong> 13 Jahre</p>
+            <p><strong>Hobby:</strong> Detektivarbeit</p>
+            <p class="mb-4">Justus ist der kluge Kopf der drei ??? und liebt es, Rätsel zu lösen.</p>
+            <div class="info-box">
+              <div class="info-text">
+                <p><strong>Spezialgebiet:</strong> Rätsel lösen</p>
+                <p><strong>Lieblingswerkzeug:</strong> Lupe</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- Abschnitt für Bob -->
-    <section id="bob" class="mb-4">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="bob.png" width="200px" alt="Bob Andrews" class="img-fluid">
-        </div>
-        <div class="col-md-8">
-          <h2>Bob Andrews</h2>
-          <p><strong>Alter:</strong> 11 Jahre</p>
-          <p><strong>Hobby:</strong> Bücher lesen</p>
-          <p>Bob ist der ruhige Denker und immer gut informiert.</p>
+      <div class="tab-pane fade" id="peter" role="tabpanel" aria-labelledby="peter-tab">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <img src="peter.png" width="200px" alt="Peter Shaw" class="img-fluid">
+          </div>
+          <div class="col-md-8">
+            <h2 class="mt-3">Peter Shaw</h2>
+            <p><strong>Alter:</strong> 12 Jahre</p>
+            <p><strong>Hobby:</strong> Computerspiele</p>
+            <p class="mb-4">Peter ist der sportliche Typ und Experte für Technik.</p>
+            <div class="info-box">
+              <div class="info-text">
+                <p><strong>Spezialgebiet:</strong> Technik</p>
+                <p><strong>Lieblingswerkzeug:</strong> Laptop</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+      <div class="tab-pane fade" id="bob" role="tabpanel" aria-labelledby="bob-tab">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <img src="bob.png" width="200px" alt="Bob Andrews" class="img-fluid">
+          </div>
+          <div class="col-md-8">
+            <h2 class="mt-3">Bob Andrews</h2>
+            <p><strong>Alter:</strong> 11 Jahre</p>
+            <p><strong>Hobby:</strong> Bücher lesen</p>
+            <p class="mb-4">Bob ist der ruhige Denker und immer gut informiert.</p>
+            <div class="info-box">
+              <div class="info-text">
+                <p><strong>Spezialgebiet:</strong> Wissen</p>
+                <p><strong>Lieblingswerkzeug:</strong> Buch</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Bootstrap JavaScript und ggf. eigene Skripte -->
+  <!-- Bootstrap JavaScript und eigene Skripte -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

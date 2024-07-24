@@ -7,14 +7,79 @@
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Eigenes CSS -->
-  <link href="./style.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
   <!-- Google Fonts (für kindliche Schriftarten) -->
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: black;
+      font-family: 'Patrick Hand', cursive;
+    }
+    h1, h2 {
+      color: black;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: blue;
+      color: white; /* Rotes Fragezeichen */
+    }
+    .nav-tabs .nav-link {
+      background-color: #333;
+      color: white;
+    }
+    .btn-primary {
+      background-color: green; /* Rotes Fragezeichen */
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: blue;
+      color: white;
+    }
+    .card-header, .card-body, .modal-content {
+      background-color: #333;
+      color: white;
+    }
+    .card {
+      border: none;
+    }
+    .modal-header {
+      border-bottom: none;
+    }
+    .modal-footer {
+      border-top: none;
+    }
+    .fa-comments {
+      color: white; /* Rotes Fragezeichen */
+    }
+    .fa-comments:hover {
+      color: #333;
+    }
+    .header-logo {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .header-logo span:nth-child(1) {
+      color: red;
+    }
+    .header-logo span:nth-child(2) {
+      color: blue;
+    }
+    .header-logo span:nth-child(3) {
+      color: green;
+    }
+    .note{
+      color:black !important;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1 class="text-center mb-4">Die drei ??? - Steckbriefe</h1>
+    <header class="mb-4">
+      <div class="header-logo">
+        Die drei <span>?</span><span>?</span><span>?</span>
+      </div>
     </header>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
@@ -38,12 +103,9 @@
             <p><strong>Alter:</strong> 13 Jahre</p>
             <p><strong>Hobby:</strong> Detektivarbeit</p>
             <p class="mb-4">Justus ist der kluge Kopf der drei ??? und liebt es, Rätsel zu lösen.</p>
-            <div class="info-box">
-              <div class="info-text">
-                <p><strong>Spezialgebiet:</strong> Rätsel lösen</p>
-                <p><strong>Lieblingswerkzeug:</strong> Lupe</p>
-              </div>
-            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#justusModal">
+              Mehr über Justus
+            </button>
           </div>
         </div>
       </div>
@@ -57,12 +119,6 @@
             <p><strong>Alter:</strong> 12 Jahre</p>
             <p><strong>Hobby:</strong> Computerspiele</p>
             <p class="mb-4">Peter ist der sportliche Typ und Experte für Technik.</p>
-            <div class="info-box">
-              <div class="info-text">
-                <p><strong>Spezialgebiet:</strong> Technik</p>
-                <p><strong>Lieblingswerkzeug:</strong> Laptop</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -76,21 +132,87 @@
             <p><strong>Alter:</strong> 11 Jahre</p>
             <p><strong>Hobby:</strong> Bücher lesen</p>
             <p class="mb-4">Bob ist der ruhige Denker und immer gut informiert.</p>
-            <div class="info-box">
-              <div class="info-text">
-                <p><strong>Spezialgebiet:</strong> Wissen</p>
-                <p><strong>Lieblingswerkzeug:</strong> Buch</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JavaScript und eigene Skripte -->
+  <!-- Modal -->
+  <div class="modal fade" id="justusModal" tabindex="-1" role="dialog" aria-labelledby="justusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content note">
+        <div class="modal-header">
+          <h5 class="modal-title" id="justusModalLabel">EILMELDUNG!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Gut, dass ich euch erreiche oder eben Entführertext:)</p>
+          <iframe width="100%" height="450" src="https://map.what3words.com/alle.rollen.abk%C3%BChlung?embed=true"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button for Chat -->
+  <button id="chatButton" class="btn btn-primary rounded-circle" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;">
+    <span class="fa fa-comments" aria-hidden="true">Chat</span>
+  </button>
+
+  <!-- Chat Section -->
+  <div id="chatSection" class="card" style="position: fixed; bottom: 90px; right: 20px; width: 300px; display: none;">
+    <div class="card-header">Chat</div>
+    <div class="card-body">
+      <div id="chatMessages" style="height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 5px;"></div>
+      <input type="text" id="chatInput" class="form-control mt-2" placeholder="Type your message...">
+      <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScript und ggf. eigene Skripte -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Skript zum automatischen Öffnen des Modals und Chat-Funktion -->
+  <script>
+    $(document).ready(function() {
+      // Check if each tab has 3 paragraphs, a heading, and a picture
+      function checkTabContent(tabId) {
+        const tab = $(tabId);
+        const paragraphs = tab.find('p').length;
+        const heading = tab.find('h2').length;
+        const picture = tab.find('img').length;
+        return paragraphs === 3 && heading === 1 && picture === 1;
+      }
+
+      if (checkTabContent('#justus')) {
+        $('#justusModal').modal('show');
+      }
+
+      // Chat functionality
+      $('#chatButton').click(function() {
+        $('#chatSection').toggle();
+      });
+
+      $('#sendButton').click(function() {
+        const message = $('#chatInput').val();
+        if (message.trim()) {
+          $('#chatMessages').append('<div><strong>You:</strong> ' + message + '</div>');
+          $('#chatInput').val('');
+
+          // Simulate an automatic response
+          setTimeout(function() {
+            $('#chatMessages').append('<div><strong>Justus:</strong> Super, ihr habt eine Verbindung zu mir hergestellt!</div>');
+          }, 1000);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

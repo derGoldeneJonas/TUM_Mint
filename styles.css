@@ -1,0 +1,86 @@
+body {
+  font-family: 'Patrick Hand', cursive; /* Kindliche Schriftart */
+  background-color: #f0f0f0; /* Hintergrundfarbe */
+}
+
+h1, h2 {
+  color: #333; /* Textfarbe */
+}
+
+.nav-tabs .nav-link {
+  font-size: 18px; /* Größere Schriftgröße für Tabs */
+  color: #333; /* Textfarbe */
+  background-color: #f8f9fa; /* Hintergrundfarbe der Tabs */
+  border: none;
+  border-radius: 20px 20px 0 0; /* Abgerundete Ecken oben */
+}
+
+.nav-tabs .nav-link.active {
+  color: #fff; /* Aktive Tab-Textfarbe */
+  background-color: #007bff; /* Aktive Tab-Hintergrundfarbe */
+}
+
+.nav-tabs .nav-link:hover {
+  color: #fff; /* Tab-Textfarbe beim Überfahren */
+  background-color: #0069d9; /* Tab-Hintergrundfarbe beim Überfahren */
+}
+
+.tab-pane {
+  background-color: #fff; /* Hintergrundfarbe der Tab-Inhalte */
+  padding: 20px;
+  border: 1px solid #ddd; /* Rand um Tab-Inhalte */
+  border-top: none; /* Kein Rand oben */
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+}
+
+.info-icon img {
+  width: 50px; /* Größe der Info-Icons */
+  height: 50px;
+  margin-right: 10px;
+}
+
+.info-text p {
+  margin-bottom: 5px;
+}
+
+/* Modal als Notizzettel gestalten */
+.modal-content.note {
+  background: #fffbcc; /* Notizzettel-Hintergrundfarbe */
+  border: 1px solid #e0c066; /* Notizzettel-Randfarbe */
+  border-radius: 0; /* Keine abgerundeten Ecken */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Schatten für 3D-Effekt */
+  font-family: 'Patrick Hand', cursive; /* Kindliche Schriftart */
+  padding: 20px; /* Innenabstand */
+  position: relative;
+}
+
+.modal-content.note::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #e0c066,
+    #e0c066 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal-title {
+  font-size: 24px; /* Größere Schriftgröße für Titel */
+  color: #333; /* Titel-Textfarbe */
+}
+
+
+.btn-primary{
+background-color:red;
+}

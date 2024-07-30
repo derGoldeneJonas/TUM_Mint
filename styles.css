@@ -84,3 +84,55 @@ h1, h2 {
 .btn-primary{
 background-color:red;
 }
+
+body {
+  background-color: black;
+  color: black;
+  font-family: 'Patrick Hand', cursive;
+}
+h1, h2 {
+  color: black;
+}
+.nav-tabs .nav-link.active {
+  background-color: #06ABEB;
+  color: white; /* Rotes Fragezeichen */
+}
+.nav-tabs .nav-link {
+  background-color: #333;
+  color: white;
+}
+.btn-primary {
+  background-color: #06ABEB; /* Rotes Fragezeichen */
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #06ABEB;
+  color: white;
+}
+.card {
+  border: none;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+.fa-comments {
+  color: white; /* Rotes Fragezeichen */
+}
+.fa-comments:hover {
+  color: #333;
+}
+.header-logo {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+.header-logo span:nth-child(2) {
+  color: #E91C24;
+}
+.header-logo span:nth-child(3) {
+  color: #06ABEB;
+}

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Die drei ??? - Steckbriefe</title>
   <!-- Bootstrap CSS -->
-  
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts -->
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
   <link href="styles.css" rel="stylesheet">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
     <header class="mb-4">
@@ -22,17 +26,25 @@
     </header>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="justus-tab" data-toggle="tab" href="#justus" role="tab" aria-controls="justus" aria-selected="true">Justus Jonas</a>
+        <a class="nav-link active" id="homepage-tab" data-toggle="tab" href="#homepage" role="tab" aria-controls="homepage"
+          aria-selected="false">Homepage</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="peter-tab" data-toggle="tab" href="#peter" role="tab" aria-controls="peter" aria-selected="false">Peter Shaw</a>
+        <a class="nav-link" id="justus-tab" data-toggle="tab" href="#justus" role="tab" aria-controls="justus"
+          aria-selected="true">Justus Jonas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="bob-tab" data-toggle="tab" href="#bob" role="tab" aria-controls="bob" aria-selected="false">Bob Andrews</a>
+        <a class="nav-link" id="peter-tab" data-toggle="tab" href="#peter" role="tab" aria-controls="peter"
+          aria-selected="false">Peter Shaw</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="bob-tab" data-toggle="tab" href="#bob" role="tab" aria-controls="bob"
+          aria-selected="false">Bob Andrews</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="justus" role="tabpanel" aria-labelledby="justus-tab"></div>
+      <div class="tab-pane fade show active" id="homepage" role="tabpanel" aria-labelledby="homepage-tab"></div>
+      <div class="tab-pane fade" id="justus" role="tabpanel" aria-labelledby="justus-tab"></div>
       <div class="tab-pane fade" id="peter" role="tabpanel" aria-labelledby="peter-tab"></div>
       <div class="tab-pane fade" id="bob" role="tabpanel" aria-labelledby="bob-tab"></div>
     </div>
@@ -44,28 +56,30 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-    // Function to load content into tab
-    function loadTabContent(tabId, url) {
-      $.ajax({
-        url: url,
-        success: function(data) {
-          $(tabId).html(data);
-          checkAllTabsContent();
-        },
-        error: function() {
-          $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
-        }
-      });
-    }
+  <script>
+    $(document).ready(function () {
+      // Function to load content into tab
+      function loadTabContent(tabId, url) {
+        $.ajax({
+          url: url,
+          success: function (data) {
+            $(tabId).html(data);
+            checkAllTabsContent();
+          },
+          error: function () {
+            $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
+          }
+        });
+      }
 
-    // Load content for each tab
-    loadTabContent("#justus", "justus.html");
-    loadTabContent("#peter", "peter.html");
-    loadTabContent("#bob", "bob.html");
+      // Load content for each tab
+      loadTabContent("#homepage", "homepage.html");
+      loadTabContent("#justus", "justus.html");
+      loadTabContent("#peter", "peter.html");
+      loadTabContent("#bob", "bob.html");
 
-  });
-    </script>
+    });
+  </script>
 </body>
+
 </html>

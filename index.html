@@ -51,35 +51,73 @@
   </div>
 
 
+ <!-- Modal -->
+ <div class="modal fade" id="justusModal" tabindex="-1" role="dialog" aria-labelledby="justusModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content note">
+      <div class="modal-header">
+        <h5 class="modal-title" id="justusModalLabel">EILMELDUNG!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-family:'Wingdings 3'; font-size:14px">Ich weiß dank eurer Webseite, dass ihr auf der Suche nach Justus, Peter und Bob seid. Ihr seid nicht allein. Ich bin ein Freund der drei Fragezeichen und habe ebenfalls Hinweise auf ihren Entführer gefunden! 
+          Der Papagei von Justus wiederholt seit dessen Verschwinden ständig folgende zwei Codes: 06 und 1908
+          Könnt ihr etwas damit anfangen? 
+          Passt auf euch auf und vertraut niemandem außer den drei Fragezeichen!
+          <br>
+          Ein Freund</p>
+        <iframe width="100%" height="450" src="https://map.what3words.com/öffnen.haie.klingen?embed=true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- Bootstrap JavaScript und ggf. eigene Skripte -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <script>
-    $(document).ready(function () {
-      // Function to load content into tab
-      function loadTabContent(tabId, url) {
-        $.ajax({
-          url: url,
-          success: function (data) {
-            $(tabId).html(data);
-            checkAllTabsContent();
-          },
-          error: function () {
-            $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
-          }
-        });
+    <script>
+            // Set the timeout duration in milliseconds (2 minutes = 120,000 milliseconds)
+       const timeoutDuration = 2 * 60 * 1000;
+
+      // Function to show the popup
+      function showPopup() {
+        $('#justusModal').modal('show');
       }
 
-      // Load content for each tab
-      loadTabContent("#homepage", "homepage.html");
-      loadTabContent("#justus", "justus.html");
-      loadTabContent("#peter", "peter.html");
-      loadTabContent("#bob", "bob.html");
+// Set a timeout to trigger the popup after the specified duration
+      setTimeout(showPopup, timeoutDuration);
+   
+      $(document).ready(function() {
+    // Function to load content into tab
+    function loadTabContent(tabId, url) {
+      $.ajax({
+        url: url,
+        success: function(data) {
+          $(tabId).html(data);
+          checkAllTabsContent();
+        },
+        error: function() {
+          $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
+        }
+      });
+    }
 
-    });
-  </script>
+    // Load content for each tab
+    loadTabContent("#homepage", "homepage.html");
+    loadTabContent("#justus", "justus.html");
+    loadTabContent("#peter", "peter.html");
+    loadTabContent("#bob", "bob.html");
+
+  });
+    </script>
 </body>
 
 </html>

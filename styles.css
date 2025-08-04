@@ -1,5 +1,5 @@
 body {
-  font-family: 'Patrick Hand', cursive; /* Schriftart */
+  font-family: 'Patrick Hand', cursive; /* Kindliche Schriftart */
   background-color: #f0f0f0; /* Hintergrundfarbe */
 }
 
@@ -135,14 +135,4 @@ h1, h2 {
 }
 .header-logo span:nth-child(3) {
   color: #06ABEB;
-}
-
-.grünundgroß{
-  color:green;
-  font-style: italic;
-}
-
-.flexbox{
-  display:flex;
-  justify-content:center;
 }

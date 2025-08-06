@@ -4,17 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Die drei ??? - Steckbriefe</title>
-  <!-- Bootstrap CSS -->
-  
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-
   <link href="styles.css" rel="stylesheet">
-  
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    #loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      z-index: 1000;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .copyright {
+      position: fixed;
+      color: white;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div id="loader"></div>
+  
+  <div class="container" id="content">
     <header class="mb-4">
       <div class="header-logo">
         Die drei <span>?</span><span>?</span><span>?</span>
@@ -38,34 +63,133 @@
     </div>
   </div>
 
+  <!-- Floating Action Button for Chat -->
+  <button id="chatButton" class="btn btn-primary rounded-circle" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;">
+    <span class="fa fa-comments" aria-hidden="true">Chat</span>
+  </button>
 
-  <!-- Bootstrap JavaScript und ggf. eigene Skripte -->
+  <!-- Chat Section -->
+  <div id="chatSection" class="card" style="position: fixed; bottom: 90px; right: 20px; width: 300px; display: none;">
+    <div class="card-header">Chat</div>
+    <div class="card-body">
+      <div id="chatMessages" style="height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 5px;"></div>
+      <input type="text" id="chatInput" class="form-control mt-2" placeholder="Type your message...">
+      <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy;Isabella, Lisa, Pia, Téa, Karla, Nora, Nicole, Vivien, Lena, Marlene, Anna,
+   Jonas
+  </div>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-    // Function to load content into tab
-    function loadTabContent(tabId, url) {
-      $.ajax({
-        url: url,
-        success: function(data) {
-          $(tabId).html(data);
-          checkAllTabsContent();
-        },
-        error: function() {
-          $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
+  <script>
+    $(document).ready(function() {
+      function showLoader() {
+        $('#loader').show();
+        setTimeout(function() {
+          $('#loader').hide();
+        }, 3000);
+      }
+
+      function loadTabContent(tabId, url) {
+        $.ajax({
+          url: url,
+          success: function(data) {
+            $(tabId).html(data);
+            checkAllTabsContent();
+          },
+          error: function() {
+            $(tabId).html("<p>Fehler beim Laden des Inhalts.</p>");
+          }
+        });
+      }
+
+      loadTabContent("#justus", "justus.html");
+      loadTabContent("#peter", "peter.html");
+      loadTabContent("#bob", "bob.html");
+
+      function checkTabContent(tabId) {
+        const tab = $(tabId);
+        const paragraphs = tab.find('p').length;
+        const heading = tab.find('h2').length;
+        const picture = tab.find('img').length;
+        return paragraphs === 3 && heading === 1 && picture === 1;
+      }
+
+      function checkAllTabsContent() {
+        if (checkTabContent('#justus') || checkTabContent('#peter') || checkTabContent('#bob')) {
+          $('#justusModal').modal('show');
+        }
+      }
+
+      function startKonfetti() {
+        let count = 0;
+        const interval = setInterval(() => {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+          count++;
+          if (count > 4) clearInterval(interval);
+        }, 500);
+      }
+
+      let messageCount = 0;
+
+      $('#chatButton').click(function() {
+        $('#chatSection').toggle();
+      });
+
+      $('#sendButton').click(function() {
+        const message = $('#chatInput').val();
+        if (message.trim()) {
+          $('#chatMessages').append('<div><strong>You:</strong> ' + message + '</div>');
+          $('#chatInput').val('');
+          messageCount++;
+
+          if (messageCount === 1) {
+            setTimeout(function() {
+              $('#chatMessages').append('<div><strong>Justus:</strong> Super, ihr habt eine Verbindung zu mir hergestellt! Wir brauchen den Code, schnell!!</div>');
+            }, 1000);
+          }
+
+          if (messageCount === 2) {
+            showLoader();
+            setTimeout(function() {
+              const audioId = "justusAudio";
+              const audioMessage = `
+                <div><strong>Justus:</strong> Vielen Dank! der Code hat geklappt, hier ist noch eine kleine Audio!
+                  <audio id="${audioId}" controls>
+                    <source src="drei_Fragezeichen_LfE.wav" type="audio/wav">
+                    Dein Browser unterstützt das Audio-Element nicht.
+                  </audio>
+                </div>`;
+              $('#chatMessages').append(audioMessage);
+
+              // Warten, bis das Audio-Element wirklich im DOM ist
+              setTimeout(() => {
+                const audio = document.getElementById(audioId);
+                if (audio) {
+                  audio.play();
+                  setTimeout(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    startKonfetti();
+                  }, 20000); // nach 20 Sekunden stoppen und Konfetti
+                }
+              }, 500);
+            }, 3000);
+          }
         }
       });
-    }
-
-    // Load content for each tab
-    loadTabContent("#justus", "justus.html");
-    loadTabContent("#peter", "peter.html");
-    loadTabContent("#bob", "bob.html");
-
-  });
-    </script>
+    });
+  </script>
 </body>
 </html>
